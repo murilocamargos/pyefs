@@ -51,3 +51,23 @@ class TriMF:
         """
         params = (self.a_, self.b_, self.c_)
         return params
+    
+    def get_degree(self, x: float):
+        """Get the membership degree of a float value `x` for
+        the triangular MF.
+
+        Parameters
+        ----------
+        x : float
+            Input data for which the membership degree will be
+            computed.
+        
+        Returns
+        -------
+        degree : float 
+            The membership degree for the input `x`. The value
+            is in [0, 1].
+        """
+        degree = max(min((x - self.a_)/(self.b_ - self.a_),\
+            (self.c_ - x)/(self.c_ - self.b_)), 0)
+        return degree
