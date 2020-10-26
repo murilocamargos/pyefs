@@ -39,3 +39,5 @@ _configtest.o.d
 
 # Used by mypy
 .mypy_cache/
+
+pyoml.egg-info
