@@ -1,4 +1,4 @@
-from ..membership import TriMF
+from pyoml.fuzzy.membership import TriMF
 
 def test_trimf_set_abc_params():
     # Test getting/setting the parameters of the Triangular MF
