@@ -1,2 +1,2 @@
-# pyefs
-Evolving Fuzzy Systems implemented in python
+# pyoml
+Online Machine Learning algorithms written in python

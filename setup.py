@@ -1,11 +1,11 @@
 import setuptools
 
 
-DISTNAME = 'pyefs'
-DESCRIPTION = 'Evolving Fuzzy Systems implemented in python'
+DISTNAME = 'pyoml'
+DESCRIPTION = 'Online Machine Learning algorithms written in python'
 MAINTAINER = 'Murilo Camargos'
-MAINTAINER_EMAIL = 'murilofilho.eng@gmail.com'
-URL = 'https://github.com/murilocamargos/pyefs'
+MAINTAINER_EMAIL = 'murilo.camargosf@gmail.com'
+URL = 'https://github.com/murilocamargos/pyoml'
 LICENSE = 'MIT'
 VERSION = '0.0.0'
 
