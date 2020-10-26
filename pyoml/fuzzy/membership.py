@@ -1,5 +1,5 @@
 # Authors: Murilo Camargos <murilo.camargosf@gmail.com>
-# License: TBD
+# License: MIT
 
 __all__ = [
     'TriMF',
