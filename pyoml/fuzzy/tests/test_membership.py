@@ -49,3 +49,11 @@ def test_trapmf_get_membership_degree():
     # Test the membership degrees computation for the Trapezoidal MF
     mf = TrapMF(0,1,2,3)
     assert mf.get_degree(-0.5) == 0
+    assert mf.get_degree(0) == 0
+    assert mf.get_degree(0.5) == 0.5
+    assert mf.get_degree(1) == 1
+    assert mf.get_degree(1.5) == 1
+    assert mf.get_degree(2) == 1
+    assert mf.get_degree(2.5) == 0.5
+    assert mf.get_degree(3) == 0
+    assert mf.get_degree(3.5) == 0

@@ -101,6 +101,26 @@ class TrapMF(MF):
         """
         params = (self.a_, self.b_, self.c_, self.d_)
         return params
+    
+    def get_degree(self, x: NumericType) -> NumericType:
+        """Get the membership degree of a float value `x` for
+        the trapezoidal MF.
+
+        Parameters
+        ----------
+        x : NumericType
+            Input data for which the membership degree will be
+            computed.
+        
+        Returns
+        -------
+        degree : NumericType 
+            The membership degree for the input `x`. The value
+            is in [0, 1].
+        """
+        degree = max(min(min((x - self.a_)/(self.b_ - self.a_),\
+            (self.d_ - x)/(self.d_ - self.c_)), 1), 0)
+        return degree
 
 
 class TriMF(MF):
