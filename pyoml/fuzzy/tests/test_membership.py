@@ -1,4 +1,6 @@
 import pytest
+import numpy as np
+
 from pyoml.fuzzy.membership import TriMF, TrapMF
 
 def test_trimf_set_abc_params():
@@ -57,3 +59,10 @@ def test_trapmf_get_membership_degree():
     assert mf.get_degree(2.5) == 0.5
     assert mf.get_degree(3) == 0
     assert mf.get_degree(3.5) == 0
+
+def test_trapmf_get_membership_degree_np_array():
+    # Test the membership degrees computation for the Trapezoidal MF
+    mf = TrapMF(0,1,2,3)
+    ipt = np.array([-0.5, 0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5])
+    out = np.array([0, 0, 0.5, 1, 1, 1, 0.5, 0, 0])
+    assert mf.get_degree(ipt) == out
