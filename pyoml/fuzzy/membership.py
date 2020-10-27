@@ -80,10 +80,10 @@ class TrapMF(MF):
     >>> mf = TrapMF(0,1,2,3)
     """
     def __init__(self, a: NumericType, b: NumericType, c: NumericType,\
-        d: NumericType):
+        d: NumericType, check_order=True):
         super().__init__((a, b, c, d))
 
-        if not a <= b <= c <= d:
+        if check_order and not a <= b <= c <= d:
             raise ValueError('The parameters must be specified such that a <= b <= c <= d.')
         
         self.a_ = a
@@ -123,7 +123,7 @@ class TrapMF(MF):
         return degree
 
 
-class TriMF(MF):
+class TriMF(TrapMF):
     """Triangular membership function.
 
     Parameters
@@ -154,14 +154,10 @@ class TriMF(MF):
     >>> mf = TriMF(0,1,2)
     """
     def __init__(self, a: NumericType, b: NumericType, c: NumericType):
-        super().__init__((a, b, c))
+        super().__init__(a, b, b, c, False)
 
         if not a <= b <= c:
             raise ValueError('The parameters must be specified such that a <= b <= c.')
-        
-        self.a_ = a
-        self.b_ = b
-        self.c_ = c
 
     def get_params(self) -> Tuple[NumericType]:
         """Get the triangular form's parameters.
@@ -171,25 +167,5 @@ class TriMF(MF):
         params : Tuple[NumericType, NumericType, NumericType]
             Ordered triangular three parameters (a,b,c).
         """
-        params = (self.a_, self.b_, self.c_)
+        params = (self.a_, self.b_, self.d_)
         return params
-    
-    def get_degree(self, x: NumericType) -> NumericType:
-        """Get the membership degree of a float value `x` for
-        the triangular MF.
-
-        Parameters
-        ----------
-        x : NumericType
-            Input data for which the membership degree will be
-            computed.
-        
-        Returns
-        -------
-        degree : NumericType 
-            The membership degree for the input `x`. The value
-            is in [0, 1].
-        """
-        degree = max(min((x - self.a_)/(self.b_ - self.a_),\
-            (self.c_ - x)/(self.c_ - self.b_)), 0)
-        return degree
