@@ -1,5 +1,7 @@
 # Authors: Murilo Camargos <murilo.camargosf@gmail.com>
 # License: MIT
+from typing import Union
+
 
 __all__ = [
     'TriMF',
@@ -10,13 +12,13 @@ class TriMF:
 
     Parameters
     ----------
-    p1 : float
+    a : float
         First parameter to control the triangular shape.
 
-    p2 : float
+    b : float
         Second parameter to control the triangular shape.
 
-    p3 : float
+    c : float
         Third parameter to control the triangular shape.
 
     Attributes
@@ -35,11 +37,27 @@ class TriMF:
     >>> from pyoml.fuzzy.membership import TriMF
     >>> mf = TriMF(0,1,2)
     """
-    def __init__(self, p1: float, p2: float, p3: float):
-        p = sorted([p1, p2, p3])
+    def __init__(self, a: Union[int, float], b: Union[int, float],\
+        c: Union[int, float]):
+
+        self._check_num_type((a, b, c))
+        
+        p = sorted([a, b, c])
         self.a_ = p[0]
         self.b_ = p[1]
         self.c_ = p[2]
+
+    def _check_num_type(self, params: tuple) -> None:
+        """Check if the each param in `params` is numeric [int, float].
+        
+        Parameters
+        ----------
+        params : tuple of ints or floats
+            A tuple with all the MF parameters.
+        """
+        for p in params:
+            if type(p) not in [int, float]:
+                raise TypeError('All parameters must be numeric.')
 
     def get_params(self):
         """Get the triangular form's parameters.
