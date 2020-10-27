@@ -38,3 +38,14 @@ def test_trapmf_set_abcd_params():
     # Ordered
     mf = TrapMF(0,1,2,3)
     assert mf.get_params() == (0,1,2,3)
+
+def test_trapmf_set_non_numeric_abcd_params():
+    # Test setting a non numeric value for the MF params
+    with pytest.raises(TypeError) as err:
+        _ = TrapMF('0',1,2,3)
+    assert str(err.value) == 'All parameters must be numeric.'
+
+def test_trapmf_get_membership_degree():
+    # Test the membership degrees computation for the Trapezoidal MF
+    mf = TrapMF(0,1,2,3)
+    assert mf.get_degree(-0.5) == 0
