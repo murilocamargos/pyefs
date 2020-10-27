@@ -42,6 +42,10 @@ class MF:
         raise NotImplementedError('The `get_degree` method must be implemented')
 
 
+class TrapMF(MF):
+    pass
+
+
 class TriMF(MF):
     """Triangular membership function.
 

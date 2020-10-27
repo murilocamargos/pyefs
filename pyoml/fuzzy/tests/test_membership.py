@@ -1,5 +1,5 @@
 import pytest
-from pyoml.fuzzy.membership import TriMF
+from pyoml.fuzzy.membership import TriMF, TrapMF
 
 def test_trimf_set_abc_params():
     # Test getting/setting the parameters of the Triangular MF
@@ -27,3 +27,14 @@ def test_trimf_get_membership_degree():
     assert mf.get_degree(1.5) == 0.5
     assert mf.get_degree(2) == 0
     assert mf.get_degree(2.5) == 0
+
+
+def test_trapmf_set_abcd_params():
+    # Test getting/setting the parameters of the Triangular MF
+    with pytest.raises(ValueError) as err:
+        _ = TrapMF(2,1,0,1)
+    assert str(err.value) == 'The parameters must be specified such that a <= b <= c <= d.'
+    
+    # Ordered
+    mf = TrapMF(0,1,2,3)
+    assert mf.get_params() == (0,1,2,3)
