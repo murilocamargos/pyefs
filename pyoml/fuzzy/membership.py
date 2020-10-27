@@ -41,11 +41,13 @@ class TriMF:
         c: Union[int, float]):
 
         self._check_num_type((a, b, c))
+
+        if not a <= b <= c:
+            raise ValueError('The parameters must be specified such that a <= b <= c.')
         
-        p = sorted([a, b, c])
-        self.a_ = p[0]
-        self.b_ = p[1]
-        self.c_ = p[2]
+        self.a_ = a
+        self.b_ = b
+        self.c_ = c
 
     def _check_num_type(self, params: tuple) -> None:
         """Check if the each param in `params` is numeric [int, float].
