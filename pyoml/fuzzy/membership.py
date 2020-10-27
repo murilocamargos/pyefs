@@ -43,7 +43,52 @@ class MF:
 
 
 class TrapMF(MF):
-    pass
+    """Trapezoidal membership function.
+
+    Parameters
+    ----------
+    a : float
+        First parameter to control the trapzoidal shape.
+
+    b : float
+        Second parameter to control the trapzoidal shape.
+
+    c : float
+        Third parameter to control the trapzoidal shape.
+    
+    d : float
+        Fourth parameter to control the trapzoidal shape.
+
+    Attributes
+    ----------
+    a_ : float
+        Trapezoidal shape lower bound.
+
+    b_ : float
+        Trapezoidal shape first mid point.
+
+    c_ : float
+        Trapezoidal shape second mid point.
+    
+    d_ : float
+        Trapezoidal shape upper bound.
+    
+    Examples
+    --------
+    >>> from pyoml.fuzzy.membership import TrapMF
+    >>> mf = TrapMF(0,1,2,3)
+    """
+    def __init__(self, a: NumericType, b: NumericType, c: NumericType,\
+        d: NumericType):
+        super().__init__((a, b, c, d))
+
+        if not a <= b <= c <= d:
+            raise ValueError('The parameters must be specified such that a <= b <= c <= d.')
+        
+        self.a_ = a
+        self.b_ = b
+        self.c_ = c
+        self.d_ = d
 
 
 class TriMF(MF):
