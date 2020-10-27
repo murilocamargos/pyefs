@@ -1,10 +1,6 @@
 # Authors: Murilo Camargos <murilo.camargosf@gmail.com>
 # License: MIT
-
-from typing import Union, Tuple
-from .base import MF
-
-NumericType = Union[int, float]
+from .base import MF, NumericType, ParamsType
 
 
 class TrapMF(MF):
@@ -55,12 +51,12 @@ class TrapMF(MF):
         self.c_ = c
         self.d_ = d
     
-    def get_params(self) -> Tuple[NumericType]:
+    def get_params(self) -> ParamsType:
         """Get the trapezoidal form's parameters.
 
         Returns
         -------
-        params : Tuple[NumericType, NumericType, NumericType, NumericType]
+        params : ParamsType
             Ordered trapezoidal four parameters (a,b,c,d).
         """
         params = (self.a_, self.b_, self.c_, self.d_)

@@ -4,6 +4,7 @@
 from typing import Union, Tuple
 
 NumericType = Union[int, float]
+ParamsType = Tuple[NumericType]
 
 
 class MF:
@@ -14,10 +15,10 @@ class MF:
     params : tuple of ints or floats
         A tuple with all the MF parameters.
     """
-    def __init__(self, params: Tuple[NumericType]):
+    def __init__(self, params: ParamsType):
         self._check_num_type(params)
     
-    def _check_num_type(self, params: Tuple[NumericType]) -> None:
+    def _check_num_type(self, params: ParamsType) -> None:
         """Check if the each param in `params` is numeric [int, float].
         
         Parameters
@@ -29,7 +30,7 @@ class MF:
             if type(p) not in [int, float]:
                 raise TypeError('All parameters must be numeric.')
     
-    def get_params(self) -> Tuple[NumericType]:
+    def get_params(self) -> ParamsType:
         """Get the MF parameters."""
         raise NotImplementedError('The `get_params` method must be implemented')
     

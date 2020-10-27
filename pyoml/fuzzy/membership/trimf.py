@@ -1,10 +1,8 @@
 # Authors: Murilo Camargos <murilo.camargosf@gmail.com>
 # License: MIT
 
-from typing import Union, Tuple
+from .base import NumericType, ParamsType
 from .trapmf import TrapMF
-
-NumericType = Union[int, float]
 
 
 class TriMF(TrapMF):
@@ -43,12 +41,12 @@ class TriMF(TrapMF):
         if not a <= b <= c:
             raise ValueError('The parameters must be specified such that a <= b <= c.')
 
-    def get_params(self) -> Tuple[NumericType]:
+    def get_params(self) -> ParamsType:
         """Get the triangular form's parameters.
 
         Returns
         -------
-        params : Tuple[NumericType, NumericType, NumericType]
+        params : ParamsType
             Ordered triangular three parameters (a,b,c).
         """
         params = (self.a_, self.b_, self.d_)
