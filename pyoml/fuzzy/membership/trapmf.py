@@ -1,5 +1,6 @@
 # Authors: Murilo Camargos <murilo.camargosf@gmail.com>
 # License: MIT
+import numpy as np
 from .base import MF, NumericType, ParamsType
 
 
@@ -78,6 +79,8 @@ class TrapMF(MF):
             The membership degree for the input `x`. The value
             is in [0, 1].
         """
-        degree = max(min(min((x - self.a_)/(self.b_ - self.a_),\
+        mn = np.minimum
+        mx = np.maximum
+        degree = mx(mn(mn((x - self.a_)/(self.b_ - self.a_),\
             (self.d_ - x)/(self.d_ - self.c_)), 1), 0)
         return degree
