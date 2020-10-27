@@ -65,4 +65,4 @@ def test_trapmf_get_membership_degree_np_array():
     mf = TrapMF(0,1,2,3)
     ipt = np.array([-0.5, 0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5])
     out = np.array([0, 0, 0.5, 1, 1, 1, 0.5, 0, 0])
-    assert mf.get_degree(ipt) == out
+    assert (mf.get_degree(ipt) == out).all()
