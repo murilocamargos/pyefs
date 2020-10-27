@@ -30,6 +30,13 @@ def test_trimf_get_membership_degree():
     assert mf.get_degree(2) == 0
     assert mf.get_degree(2.5) == 0
 
+def test_trimf_get_membership_degree_np_array():
+    # Test the membership degrees computation for the Trapezoidal MF
+    mf = TriMF(0,1,2)
+    ipt = np.array([-0.5, 0, 0.5, 1, 1.5, 2, 2.5])
+    out = np.array([0, 0, 0.5, 1, 0.5, 0, 0])
+    assert (mf.get_degree(ipt) == out).all()
+
 
 def test_trapmf_set_abcd_params():
     # Test getting/setting the parameters of the Triangular MF
