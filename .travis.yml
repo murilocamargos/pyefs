@@ -11,7 +11,7 @@ install:
   - conda info -a
   - python setup.py install
 script:
-  - pytest -v --color=yes --cov=cpr tests
+  - pytest -v --color=yes pyoml
 after_success:
   - conda install codecov
   - codecov
