@@ -86,13 +86,16 @@ class RLS:
                   self.wscm_factor_, self.wscm_, self.weights_)
         return params
 
-    def fit(self, x: np.ndarray):
+    def fit(self, x: np.ndarray, y: NumericType):
         """Adapt the filters parameters with new input.
 
         Parameters
         ----------
         x : np.ndarray [filter_order_ x 1]
             The input vector for adapting the RLS parameters.
+        
+        y : NumericType
+            The output associated with the input `x`.
         """
         error_msg = "The input vector must be a column numpy array"\
                    f" with dimensions {self.filter_order_}x1."
@@ -102,3 +105,6 @@ class RLS:
 
         if x.shape != (self.filter_order_, 1):
             raise ValueError(error_msg)
+
+        if not type(y) in [int, float]:
+            raise TypeError('The output must be numeric.')
