@@ -6,5 +6,5 @@ from ..rls import RLS
 
 def test_rls_start():
     # Test RLS start parameters
-    rls = RLS(p=5, lbda=1, delta=1e5)
-    assert rls.get_params() == (5, 1, 1e5)
+    rls = RLS(filter_order=5, forgetting_factor=0.999, wscm_factor=1e3)
+    assert rls.get_params() == (5, 0.999, 1e3)
