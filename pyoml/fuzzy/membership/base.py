@@ -4,7 +4,7 @@
 from typing import Union, Tuple
 
 NumericType = Union[int, float]
-ParamsType = Tuple[NumericType]
+ParamsType = Tuple[NumericType, ...]
 
 
 class MF:
