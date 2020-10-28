@@ -2,6 +2,7 @@
 # License: MIT
 
 from typing import Union, Tuple
+import numpy as np
 
 NumericType = Union[int, float]
 ParamsType = Tuple[NumericType, ...]
@@ -42,9 +43,35 @@ class RLS:
     """
     def __init__(self, filter_order: int, forgetting_factor: NumericType = 1,
                  wscm_factor: NumericType = 1e5):
+
+        # Check parameters' types
+        if type(filter_order) != int:
+            raise TypeError('The filter order must be an integer.')
+
+        if not type(forgetting_factor) in [int, float]:
+            raise TypeError('The forgetting factor must be a number.')
+
+        if not type(wscm_factor) in [int, float]:
+            raise TypeError('The weighted sample covariance matrix factor'
+                            ' must be a number.')
+
+        # Check parameters' values
+        if filter_order < 1:
+            raise ValueError('The filter order must be positive.')
+
+        if not 0 < forgetting_factor <= 1:
+            raise ValueError('The forgetting error must be in (0,1]')
+
+        if wscm_factor < 1:
+            raise ValueError('The weighted sample covariance matrix factor'
+                             ' must be greater or equal to 1.')
+
+        # Set parameters
         self.filter_order_ = filter_order
         self.forgetting_factor_ = forgetting_factor
         self.wscm_factor_ = wscm_factor
+        self.wscm_ = wscm_factor * np.eye(filter_order)
+        self.weights_ = np.zeros((filter_order, 1))
 
     def get_params(self) -> ParamsType:
         """Get the RLS filter parameters.
@@ -56,5 +83,5 @@ class RLS:
             wscm_factor.
         """
         params = (self.filter_order_, self.forgetting_factor_,
-                  self.wscm_factor_)
+                  self.wscm_factor_, self.wscm_, self.weights_)
         return params
