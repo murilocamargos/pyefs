@@ -60,7 +60,7 @@ class RLS:
             raise ValueError('The filter order must be positive.')
 
         if not 0 < forgetting_factor <= 1:
-            raise ValueError('The forgetting error must be in (0,1]')
+            raise ValueError('The forgetting error must be in (0,1].')
 
         if wscm_factor < 1:
             raise ValueError('The weighted sample covariance matrix factor'
@@ -85,3 +85,6 @@ class RLS:
         params = (self.filter_order_, self.forgetting_factor_,
                   self.wscm_factor_, self.wscm_, self.weights_)
         return params
+
+    def fit(self, x: np.ndarray):
+        pass
