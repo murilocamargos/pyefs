@@ -93,12 +93,12 @@ class RLS:
         ----------
         x : np.ndarray [filter_order_ x 1]
             The input vector for adapting the RLS parameters.
-        
+
         y : NumericType
             The output associated with the input `x`.
         """
         error_msg = "The input vector must be a column numpy array"\
-                   f" with dimensions {self.filter_order_}x1."
+                    f" with dimensions {self.filter_order_}x1."
 
         if type(x) != np.ndarray:
             raise TypeError(error_msg)
@@ -108,3 +108,13 @@ class RLS:
 
         if not type(y) in [int, float]:
             raise TypeError('The output must be numeric.')
+
+        lbd = self.forgetting_factor_
+        lbd_inv = 1/lbd
+
+        alpha = y - np.dot(x.T, self.weights_)
+        g = np.dot(np.dot(self.wscm_, x), np.linalg.inv(
+            lbd + np.dot(np.dot(x.T, self.wscm_), x)))
+        self.wscm_ = lbd_inv*self.wscm_ - np.dot(np.dot(np.dot(
+            g, x.T), lbd_inv), self.wscm_)
+        self.weights_ += alpha*g

@@ -46,21 +46,20 @@ def test_rls_start_with_param_errors():
 
 def test_rls_fit_online():
     rls = RLS(filter_order=5, forgetting_factor=0.999, wscm_factor=1e3)
-    
+
     with pytest.raises(TypeError) as err:
         rls.fit(10, 1)
     assert str(err.value) == 'The input vector must be a column numpy array'\
                              ' with dimensions 5x1.'
 
     with pytest.raises(ValueError) as err:
-        rls.fit(np.array([1,2,3]), 1)
+        rls.fit(np.array([1, 2, 3]), 1)
     assert str(err.value) == 'The input vector must be a column numpy array'\
                              ' with dimensions 5x1.'
 
     with pytest.raises(TypeError) as err:
-        rls.fit(np.array([1,2,3,4,5]).reshape((5, 1)), '1')
+        rls.fit(np.array([1, 2, 3, 4, 5]).reshape((5, 1)), '1')
     assert str(err.value) == 'The output must be numeric.'
 
-    rls.fit(np.array([1,2,3,4,5]).reshape((5, 1)), 1)
+    rls.fit(np.array([1, 2, 3, 4, 5]).reshape((5, 1)), 1)
     assert (rls.weights_ != np.zeros((5, 1))).all()
-    
