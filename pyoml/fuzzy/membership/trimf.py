@@ -1,7 +1,7 @@
 # Authors: Murilo Camargos <murilo.camargosf@gmail.com>
 # License: MIT
 
-from .base import NumericType, ParamsType
+from ...base import NumericType, NumParamsType
 from .trapmf import TrapMF
 
 
@@ -42,12 +42,12 @@ class TriMF(TrapMF):
             raise ValueError('The parameters must be specified such that'
                              ' a <= b <= c.')
 
-    def get_params(self) -> ParamsType:
+    def get_params(self) -> NumParamsType:
         """Get the triangular form's parameters.
 
         Returns
         -------
-        params : ParamsType
+        params : NumParamsType
             Ordered triangular three parameters (a,b,c).
         """
         params = (self.a_, self.b_, self.d_)

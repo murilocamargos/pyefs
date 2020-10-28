@@ -1,11 +1,8 @@
 # Authors: Murilo Camargos <murilo.camargosf@gmail.com>
 # License: MIT
-
-from typing import Union, Tuple
 import numpy as np
 
-NumericType = Union[int, float]
-ParamsType = Tuple[NumericType, ...]
+from ..base import NumericType, NumParamsType
 
 
 class RLS:
@@ -73,12 +70,12 @@ class RLS:
         self.wscm_ = wscm_factor * np.eye(filter_order)
         self.weights_ = np.zeros((filter_order, 1))
 
-    def get_params(self) -> ParamsType:
+    def get_params(self) -> NumParamsType:
         """Get the RLS filter parameters.
 
         Returns
         -------
-        params : ParamsType
+        params : NumParamsType
             RLS filter parameters: filter_order, forgetting_factor,
             wscm_factor.
         """

@@ -2,7 +2,8 @@
 # License: MIT
 
 import numpy as np
-from .base import MF, NumericType, ParamsType
+from .base import MF
+from ...base import NumericType, NumParamsType
 
 
 class TrapMF(MF):
@@ -54,12 +55,12 @@ class TrapMF(MF):
         self.c_ = c
         self.d_ = d
 
-    def get_params(self) -> ParamsType:
+    def get_params(self) -> NumParamsType:
         """Get the trapezoidal form's parameters.
 
         Returns
         -------
-        params : ParamsType
+        params : NumParamsType
             Ordered trapezoidal four parameters (a,b,c,d).
         """
         params = (self.a_, self.b_, self.c_, self.d_)
