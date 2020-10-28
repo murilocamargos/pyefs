@@ -38,8 +38,8 @@ setuptools.setup(name=DISTNAME,
                               'Programming Language :: Python :: 3.6',
                               'Programming Language :: Python :: 3.7',
                               ('Programming Language :: Python :: '
-                              'Implementation :: CPython'),
+                               'Implementation :: CPython'),
                               ('Programming Language :: Python :: '
-                              'Implementation :: PyPy')
+                               'Implementation :: PyPy')
                               ],
                  python_requires=">=3.5")

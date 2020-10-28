@@ -29,7 +29,7 @@ class TriMF(TrapMF):
 
     c_ : NumericType
         Triangular shape upper bound.
-    
+
     Examples
     --------
     >>> from pyoml.fuzzy.membership import TriMF
@@ -39,7 +39,8 @@ class TriMF(TrapMF):
         super().__init__(a, b, b, c, False)
 
         if not a <= b <= c:
-            raise ValueError('The parameters must be specified such that a <= b <= c.')
+            raise ValueError('The parameters must be specified such that'
+                             ' a <= b <= c.')
 
     def get_params(self) -> ParamsType:
         """Get the triangular form's parameters.
