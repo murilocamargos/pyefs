@@ -87,4 +87,18 @@ class RLS:
         return params
 
     def fit(self, x: np.ndarray):
-        pass
+        """Adapt the filters parameters with new input.
+
+        Parameters
+        ----------
+        x : np.ndarray [filter_order_ x 1]
+            The input vector for adapting the RLS parameters.
+        """
+        error_msg = "The input vector must be a column numpy array"\
+                   f" with dimensions {self.filter_order_}x1."
+
+        if type(x) != np.ndarray:
+            raise TypeError(error_msg)
+
+        if x.shape != (self.filter_order_, 1):
+            raise ValueError(error_msg)
